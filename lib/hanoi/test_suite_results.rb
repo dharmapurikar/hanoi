@@ -19,6 +19,10 @@ class TestSuiteResults
     @failure_files.push(result.filename) if result.failure?
   end
   
+  def failed?
+    @errors > 0 || @failures > 0
+  end
+  
   def error?
     @errors > 0
   end
@@ -32,6 +36,7 @@ class TestSuiteResults
     str << "\n  Failures: #{@failure_files.join(', ')}" if failure?
     str << "\n  Errors:   #{@error_files.join(', ')}" if error?
     "#{str}\n#{summary}\n\n"
+    raise if failed?
   end
   
   def summary

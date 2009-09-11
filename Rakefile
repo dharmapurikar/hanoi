@@ -5,16 +5,16 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'spec/rake/spectask'
 
-HANOI_VERSION = "0.0.1"
+HANOI_VERSION = "0.0.1.1"
 
 task :default => :spec
 
 desc 'Build and install the gem (useful for development purposes).'
 task :install do
-  system "gem build hanoi.gemspec"
-  system "sudo gem uninstall hanoi"
-  system "sudo gem install --local --no-rdoc --no-ri hanoi-#{HANOI_VERSION}.gem"
-  system "rm hanoi-*.gem"
+  system "gem build hanoi++.gemspec"
+  system "sudo gem uninstall hanoi++"
+  system "sudo gem install --local --no-rdoc --no-ri hanoi++-#{HANOI_VERSION}.gem"
+  system "rm hanoi++-*.gem"
 end
 
 Spec::Rake::SpecTask.new do |t|

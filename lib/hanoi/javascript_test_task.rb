@@ -108,7 +108,7 @@ class JavaScriptTestTask < ::Rake::TaskLib
   protected
     def setup_tests(test_cases)
       create_temp_directory
-      test_cases ||= Dir["#{test_directory}/**/*_test.js"] + Dir["#{test_directory}/**/*_spec.js"]
+      test_cases ||= Dir["#{test_directory}/**/*_test.html"]
       test_cases.map do |test_case|
         test_case = TestCase.new(test_case, test_directory)
         unless test_case.exist?
@@ -155,7 +155,7 @@ END
 
     def template
       @template ||= begin
-        path = File.expand_path(test_directory + "/templates/test_case.erb")
+        path = File.expand_path(current_directory + "/templates/test_case.erb")
         raise "Can't find the Javascript test template: '#{path}'" unless File.exist?(path)
         ERB.new(File.new(path).read)
       end
@@ -185,6 +185,6 @@ END
     end
 
     def assets_directory
-      @assets_directory ||= File.expand_path(current_directory + "/test/javascript/assets").freeze
+      @assets_directory ||= File.expand_path(current_directory + "/assets").freeze
     end
 end

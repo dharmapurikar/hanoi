@@ -14,7 +14,7 @@ class TestCase
   end
 
   def content
-    File.new(@path).read
+    File.new(@path).read.gsub('jquery-qunit-testrunner.js', 'testrunner.js')
   end
 
   def exist?
